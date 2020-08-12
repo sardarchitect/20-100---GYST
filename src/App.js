@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Header } from "./components/Header";
+import { Content } from "./components/Content/Content";
+import { ProjectsProvider, SelectedProjectProvider, TasksProvider } from './context';
 
-function App() {
+const App = () => {
+  const [showSidebar, setShowSidebar] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SelectedProjectProvider>
+      <ProjectsProvider>
+        <TasksProvider>
+        <div className="App">
+          <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+          <Content showSidebar={showSidebar} />
+        </div>
+        </TasksProvider>
+      </ProjectsProvider>
+    </SelectedProjectProvider>
   );
-}
+};
 
 export default App;
