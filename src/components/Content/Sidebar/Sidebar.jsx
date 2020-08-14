@@ -6,33 +6,39 @@ import {
   FiChevronDown,
 } from "react-icons/fi";
 import { BsCalendar } from "react-icons/bs";
-import { ProjectList } from "../ProjectList";
-import { useSelectedProjectValue } from "../../context";
-import { AddProject } from "../AddProject";
+import { ProjectList } from "./ProjectList";
+import { useSelectedProjectValue } from "../../../context";
+import { AddProject } from "./AddProject";
 
 export const Sidebar = () => {
   const { setSelectedProject } = useSelectedProjectValue();
-  const [active, setActive] = useState('inbox');
+  const [active, setActive] = useState("all");
   const [showProjects, setShowProjects] = useState(false);
   const toggleProjectList = () => {
     setShowProjects(!showProjects);
   };
-
+  const genericItems = [
+    {title:'All',projectId:'all'},
+    {title:'Today', projectId: 'today'},
+    {title:'This Week', projectId: 'this-week'},
+  ]
   return (
     <div className="sidebar">
       <div className="sidebar__generic">
+        {/* Sidebar Item: All */}
         <div
           className={
-            active === "inbox" ? "sidebar__item active" : "sidebar__item"
+            active === "all" ? "sidebar__item active" : "sidebar__item"
           }
           onClick={() => {
-            setActive("inbox");
-            setSelectedProject("inbox");
+            setActive("all");
+            setSelectedProject("all");
           }}
         >
           <FiInbox size="24px" />
-          <span className="sidebar__label">Inbox</span>
+          <span className="sidebar__label">All Tasks</span>
         </div>
+        {/* Sidebar Item: Today */}
         <div
           className={
             active === "today" ? "sidebar__item active" : "sidebar__item"
@@ -40,11 +46,13 @@ export const Sidebar = () => {
           onClick={() => {
             setActive("today");
             setSelectedProject("today");
+            
           }}
         >
           <FiCalendar size="24px" />
           <span className="sidebar__label">Today</span>
         </div>
+        {/* Sidebar Item: This Week */}
         <div
           className={
             active === "this-week" ? "sidebar__item active" : "sidebar__item"
@@ -59,8 +67,10 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <div className="sidebar__separator"></div>
+      {/* Sidebar Custom Projects */}
 
+      <div className="sidebar__separator"></div>
+          
       <div className="sidebar__projects">
         <div className="sidebar__item" onClick={toggleProjectList}>
           {showProjects ? (
@@ -76,7 +86,7 @@ export const Sidebar = () => {
 
       {showProjects && (
         <ul>
-          <ProjectList active={active} setActive={setActive}/>
+          <ProjectList active={active} setActive={setActive} />
           <AddProject />
         </ul>
       )}

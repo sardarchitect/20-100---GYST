@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
 import {  FiPlus,} from 'react-icons/fi';
-import { useProjectsValue } from '../context';
-import {firebase} from '../firebase'
+import {db} from '../../../firebase'
+
 export const AddProject = () => {
     const [active, setActive] = useState(false);
-    const [projectName, setProjectName] = useState('')
-    const {projects, setProjects} = useProjectsValue();
+    const [title, setTitle] = useState('')
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        addProject(projectName);
-        setProjectName('');
+        addProject(title);
+        setTitle('');
         setActive(false);
     }
+
     const addProject = (title) => {
-        const projectId = Math.floor(Math.random()*1000);
-        firebase
-            .firestore()
-            .collection('projects')
+        const generateProjectId = Math.floor(Math.random()*100000);
+        db.collection('projects')
             .add({
-                projectId,
+                projectId: generateProjectId,
                 title:title,
             })
             .then(()=>{
-                setProjects([...projects]);
+                console.log(title,"added");
             })
     }
     return(
@@ -36,7 +34,7 @@ export const AddProject = () => {
             active && (
                 <div className="sidebar__add-form">
                     <form onSubmit={handleSubmit}>
-                        <input type='text' onChange={(e)=> setProjectName(e.target.value)} placeholder="Untitled" value={projectName}/>
+                        <input type='text' onChange={(e)=> setTitle(e.target.value)} placeholder="Untitled" value={title}/>
                         <button type='submit'>Add</button>
                     </form>
                 </div>

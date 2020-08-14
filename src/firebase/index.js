@@ -1,9 +1,9 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const firebaseConfig = firebase.initializeApp({
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
+firebase.initializeApp({
+  apiKey: "AIzaSyDb5NWqgYX3k2uXqdi_tGH7mLMyoQqxDs4",
+  authDomain: "gyst-d33cb.firebaseapp.com",
   databaseURL: "https://gyst-d33cb.firebaseio.com",
   projectId: "gyst-d33cb",
   storageBucket: "gyst-d33cb.appspot.com",
@@ -12,4 +12,5 @@ const firebaseConfig = firebase.initializeApp({
   measurementId: "G-0XGQSHQDQX"
 });
 
-export { firebaseConfig as firebase };
+const db = firebase.firestore();
+export { db };

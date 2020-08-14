@@ -16,7 +16,7 @@ export const useProjectsValue = () => useContext (ProjectsContext);
 // SELECTED PROJECT PROVIDER
 export const SelectedProjectContext = createContext();
 export const SelectedProjectProvider = ({ children  }) => {
-    const [selectedProject, setSelectedProject] = useState();
+    const [selectedProject, setSelectedProject] = useState("all");
     return(
         <SelectedProjectContext.Provider value={{selectedProject, setSelectedProject}}>
             {children}
@@ -25,7 +25,7 @@ export const SelectedProjectProvider = ({ children  }) => {
 };
 export const useSelectedProjectValue = () => useContext (SelectedProjectContext);
 
-// TODOS PROVIDER
+// TASKS PROVIDER
 export const TasksContext = createContext();
 export const TasksProvider = ({ children  }) => {
     const {tasks, setTasks} = useTasks();

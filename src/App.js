@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Header } from "./components/Header";
-import { Content } from "./components/Content/Content";
+import { Header } from "./components/header/Header";
+import { Content } from "./components/content/Content";
 import { ProjectsProvider, SelectedProjectProvider, TasksProvider } from './context';
 
 const App = () => {

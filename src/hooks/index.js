@@ -1,44 +1,41 @@
 import { useState, useEffect } from "react";
-import {firebase} from "../firebase";
+import { db } from "../firebase";
+
+// USETASKS: FETCH TASKS DATA FROM FIREBASE AND ADD TO TASKS //
 
 export const useTasks = () => {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .collection("tasks")
-      .get()
-      .then(snapshot => {
-          const allTasks = snapshot.docs.map(task => ({
-              ...task.data(),
-              docId: task.id,
-          }));
-          if(JSON.stringify(allTasks) !== JSON.stringify(tasks)) {
-            setTasks(allTasks);
-          }
+    const unsubscribe = db.collection("tasks")
+      .onSnapshot((snapshot) => {
+        const tasksData = [];
+        snapshot.forEach(doc =>
+          tasksData.push({ ...doc.data(), docId: doc.id })
+        );
+        setTasks(tasksData);
       });
-  }, [tasks]);
-  return {tasks, setTasks};
+    return () => unsubscribe();
+  }, []);
+
+  return { tasks, setTasks };
 };
+
+// USEPROJECTS: FETCH PROJECTS DATA FROM FIREBASE AND ADD TO PROJECTS //
 
 export const useProjects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .collection("projects")
-      .get()
-      .then(snapshot => {
-          const allProjects = snapshot.docs.map(project => ({
-              ...project.data(),
-              docId: project.id,
-          }));
-          if(JSON.stringify(allProjects) !== JSON.stringify(projects)) {
-            setProjects(allProjects);
-          }
+    const unsubscribe = db.collection("projects")
+      .onSnapshot((snapshot) => {
+        const projectsData = [];
+        snapshot.forEach(doc =>
+          projectsData.push({ ...doc.data(), docId: doc.id })
+        );
+        setProjects(projectsData);
       });
-  }, [projects]);
-  return {projects, setProjects};
+    return () => unsubscribe();
+  }, []);
+  return { projects, setProjects };
 };

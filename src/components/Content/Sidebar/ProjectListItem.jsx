@@ -1,27 +1,20 @@
 import React, { useState } from "react";
 import { FiTrash, FiCircle } from "react-icons/fi";
-import { firebase } from "../firebase";
-import { useSelectedProjectValue, useProjectsValue } from "../context";
+import { db } from "../../../firebase";
+import { useSelectedProjectValue } from "../../../context";
 
 export const ProjectListItem = ({ project }) => {
   const [hover, setHover] = useState(false);
-  const { projects, setProjects } = useProjectsValue();
   const { setSelectedProject } = useSelectedProjectValue();
 
-  const deleteProject = (docId) => {
-    console.log(project.docId, "deleted");
-    if (window.confirm(`Do you wish to delete ${docId}?`)) {
-      firebase
-        .firestore()
-        .collection("projects")
-        .doc(docId)
+  const deleteProject = (project) => {
+    if (window.confirm(`Do you wish to delete ${project.title}?`)) {
+      db.collection("projects")
+        .doc(project.docId)
         .delete()
         .then(() => {
-          setProjects([...projects]);
-          setSelectedProject("inbox");
+          setSelectedProject("all");
         });
-    } else {
-      return;
     }
   };
   return (
@@ -35,7 +28,7 @@ export const ProjectListItem = ({ project }) => {
       {hover && (
         <span
           className="sidebar__delete"
-          onClick={()=> deleteProject(project.docId)}
+          onClick={()=> deleteProject(project)}
         >
           <FiTrash />
         </span>

@@ -1,6 +1,6 @@
 import React from "react";
-import { Editor } from "./Editor";
-import { Sidebar } from "./Sidebar";
+import { Editor } from "./Editor/Editor";
+import { Sidebar } from "./Sidebar/Sidebar";
 
 export const Content = ({ showSidebar }) => {
   return (
