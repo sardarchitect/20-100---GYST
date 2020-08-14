@@ -15,7 +15,7 @@ export const Editor = () => {
     const today = moment().format("ll");
     let filteredTasks = [];
 
-    switch (selectedProject) {
+    switch (selectedProject.projectId) {
       case "all":
         setCurrentTasks(tasks);
         break;
@@ -33,7 +33,7 @@ export const Editor = () => {
         break;
       default:
         filteredTasks = tasks.filter(
-          (task) => task.projectId === (selectedProject)
+          (task) => task.projectId === (selectedProject.projectId)
         );
         setCurrentTasks(filteredTasks);
         break;
@@ -45,7 +45,7 @@ export const Editor = () => {
       <div className="editor__display">
         {/* EDITOR HEADER */}
         <div className="editor__header">
-          <strong>{selectedProject}</strong>
+          <strong>{selectedProject.title}</strong>
         </div>
         {/* EDITOR LIST */}
         <div className="editor__list-view">

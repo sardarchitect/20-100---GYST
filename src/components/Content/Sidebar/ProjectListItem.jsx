@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FiTrash, FiCircle } from "react-icons/fi";
 import { db } from "../../../firebase";
 import { useSelectedProjectValue } from "../../../context";
+import {genericProjects} from '../../../constants';
 
 export const ProjectListItem = ({ project }) => {
   const [hover, setHover] = useState(false);
@@ -13,7 +14,7 @@ export const ProjectListItem = ({ project }) => {
         .doc(project.docId)
         .delete()
         .then(() => {
-          setSelectedProject("all");
+          setSelectedProject(genericProjects[0]);
         });
     }
   };

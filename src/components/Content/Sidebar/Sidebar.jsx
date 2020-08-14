@@ -9,6 +9,7 @@ import { BsCalendar } from "react-icons/bs";
 import { ProjectList } from "./ProjectList";
 import { useSelectedProjectValue } from "../../../context";
 import { AddProject } from "./AddProject";
+import {genericProjects} from '../../../constants';
 
 export const Sidebar = () => {
   const { setSelectedProject } = useSelectedProjectValue();
@@ -17,11 +18,7 @@ export const Sidebar = () => {
   const toggleProjectList = () => {
     setShowProjects(!showProjects);
   };
-  const genericItems = [
-    {title:'All',projectId:'all'},
-    {title:'Today', projectId: 'today'},
-    {title:'This Week', projectId: 'this-week'},
-  ]
+  
   return (
     <div className="sidebar">
       <div className="sidebar__generic">
@@ -31,8 +28,8 @@ export const Sidebar = () => {
             active === "all" ? "sidebar__item active" : "sidebar__item"
           }
           onClick={() => {
-            setActive("all");
-            setSelectedProject("all");
+            setActive(genericProjects[0].projectId);
+            setSelectedProject(genericProjects[0]);
           }}
         >
           <FiInbox size="24px" />
@@ -44,8 +41,8 @@ export const Sidebar = () => {
             active === "today" ? "sidebar__item active" : "sidebar__item"
           }
           onClick={() => {
-            setActive("today");
-            setSelectedProject("today");
+            setActive(genericProjects[1].projectId);
+            setSelectedProject(genericProjects[1]);
             
           }}
         >
@@ -58,8 +55,8 @@ export const Sidebar = () => {
             active === "this-week" ? "sidebar__item active" : "sidebar__item"
           }
           onClick={() => {
-            setActive("this-week");
-            setSelectedProject("this-week");
+            setActive(genericProjects[2].projectId);
+            setSelectedProject(genericProjects[2]);
           }}
         >
           <BsCalendar size="24px" />
