@@ -3,18 +3,18 @@ import { useSelectedProjectValue, useTasksValue } from "../../../context";
 import moment from "moment";
 import { AddTask } from "./AddTask";
 import { TaskItem } from "./TaskItem";
+import {BsThreeDots} from 'react-icons/bs';
 
 export const Editor = () => {
   const [currentTasks, setCurrentTasks] = useState([]);
   const { tasks } = useTasksValue();
   const { selectedProject } = useSelectedProjectValue();
 
-
   useEffect(() => {
     
     const today = moment().format("ll");
     let filteredTasks = [];
-
+    
     switch (selectedProject.projectId) {
       case "all":
         setCurrentTasks(tasks);
@@ -39,13 +39,14 @@ export const Editor = () => {
         break;
     }
   }, [selectedProject, tasks]);
-    
+
   return (
     <div className="editor">
       <div className="editor__display">
         {/* EDITOR HEADER */}
         <div className="editor__header">
           <strong>{selectedProject.title}</strong>
+          <BsThreeDots />
         </div>
         {/* EDITOR LIST */}
         <div className="editor__list-view">

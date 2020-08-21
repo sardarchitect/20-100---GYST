@@ -20,7 +20,7 @@ export const ProjectList = ({ active, setActive }) => {
           setSelectedProject(project);
         }}
       >
-          <ProjectListItem project={project} />
+          <ProjectListItem project={project} active={active} />
       </li>
     ))
   );

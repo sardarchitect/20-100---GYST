@@ -30,18 +30,18 @@ ul{
   padding: 10px;
   box-shadow: rgb(70, 70, 70) 1px 1px 10px;
 }
-.header__left{
+.header__left, .header__right{
   display: flex;
   justify-content: space-between;
-  width: 70px;
 }
-.header__right{
-  display: flex;
-  justify-content: space-between;
-  width: 70px;
+.header__left .header__item:last-child,.header__right .header__item:last-child{
+  margin-left: 15px;
 }
 .header__item{
-  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  padding: 5px;
 }
 .header__item:hover{
   background-color: whitesmoke;
@@ -57,27 +57,23 @@ ul{
 /*=================== SIDEBAR ===================*/
 .sidebar{
   z-index: 98;
-  position: relative;
   background-color: white;
-  min-height: calc(100vh - 50px);
   width: 400px;
   padding: 25px;
   box-shadow: rgb(70, 70, 70) 1px 1px 10px;
+  transition: width 10ms;
 }
-.sidebar__generic{
-  display: flex;
-  flex-direction: column;
+.sidebar-hidden{
+  width: 0px;
+  transition: width 10ms;
 }
-.sidebar__projects{
+.sidebar__generic, .sidebar__projects{
   display: flex;
   flex-direction: column;
 }
 .sidebar__separator{
   margin: 25px 0;
-  border: solid black 1px;
-}
-.sidebar__add{
-  margin-top: 15px;
+  border: solid rgb(218, 218, 218) 1px;
 }
 .sidebar__item{
   display: flex;
@@ -97,16 +93,19 @@ ul{
 .sidebar__label{
   margin-left: 15px;
 }
-@media only screen and (max-width: 750px) {
-  .sidebar{
-    display: none;
-  }
-}
 .active{
   background-color: whitesmoke;
   border-radius: 10px;
 }
-
+.sidebar__add{
+  margin-top: 15px;
+}
+.sidebar__add-form input{
+  width: 100%;
+}
+.sidebar__add-form button{
+  width: 50%;
+}
 
 /*=================== EDITOR ===================*/
 .editor{
@@ -125,9 +124,14 @@ ul{
 }
 .editor__header{
   height: 50px;
+  font-size: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 .editor__list-view{
- 
+  
 }
 .editor__list-item{
   height: 50px;
@@ -135,6 +139,9 @@ ul{
   display: grid;
   grid-template-columns: 48px 1fr 48px;
   border-bottom: solid grey 1px;
+}
+.editor__list-item:last-child{
+  border: none;
 }
 .task-add{
   border-bottom:none;
@@ -145,9 +152,26 @@ ul{
 .editor__list-item__date{
   font-size: .75em;
 }
+.editor__list-item__archived,.editor__list-item__delete:hover{
+  cursor: pointer;
+}
+.archived{
+  color: gray;
+}
+/* Add Tasks */
 .add-task{
   grid-column: 1/3 ;
 }
 .add-task:hover{
   cursor: pointer;
+}
+#add-task-form{
+  display: flex;
+}
+#add-task-form input:first-child{
+  width: 100%;
+}
+#add-task-form button{
+  width: 60px;
+  height: 25px;
 }

@@ -5,7 +5,7 @@ import { Sidebar } from "./Sidebar/Sidebar";
 export const Content = ({ showSidebar }) => {
   return (
     <div className="content">
-      {showSidebar && <Sidebar />}
+      <Sidebar showSidebar={showSidebar}/>
       <Editor />
     </div>
   );

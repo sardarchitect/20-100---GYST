@@ -11,7 +11,7 @@ import { useSelectedProjectValue } from "../../../context";
 import { AddProject } from "./AddProject";
 import {genericProjects} from '../../../constants';
 
-export const Sidebar = () => {
+export const Sidebar = ({showSidebar}) => {
   const { setSelectedProject } = useSelectedProjectValue();
   const [active, setActive] = useState("all");
   const [showProjects, setShowProjects] = useState(false);
@@ -20,7 +20,7 @@ export const Sidebar = () => {
   };
   
   return (
-    <div className="sidebar">
+    <div className={showSidebar ? "sidebar" : "sidebar-hidden"}>
       <div className="sidebar__generic">
         {/* Sidebar Item: All */}
         <div
