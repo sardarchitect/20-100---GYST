@@ -1,16 +1,19 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyDb5NWqgYX3k2uXqdi_tGH7mLMyoQqxDs4",
-  authDomain: "gyst-d33cb.firebaseapp.com",
-  databaseURL: "https://gyst-d33cb.firebaseio.com",
-  projectId: "gyst-d33cb",
-  storageBucket: "gyst-d33cb.appspot.com",
-  messagingSenderId: "91472427887",
-  appId: "1:91472427887:web:efa4c453e382994cf3c69a",
-  measurementId: "G-0XGQSHQDQX"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 });
 
 const db = firebase.firestore();
-export { db };
+const auth = firebase.auth();
+
+export { db, auth };

@@ -1,5 +1,5 @@
-import React, {createContext, useContext, useState} from 'react'
-import {useProjects, useTasks} from '../hooks';
+import React, {createContext, useContext} from 'react'
+import {useProjects} from '../hooks';
 
 // PROJECTS PROVIDER
 export const ProjectsContext = createContext();

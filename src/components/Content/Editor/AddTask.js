@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useSelectedProjectValue } from "../../../context";
-import { db } from "../../../firebase";
+import { db, auth } from "../../../firebase";
 
 export const AddTask = () => {
   const [active, setActive] = useState(false);
@@ -33,6 +33,7 @@ export const AddTask = () => {
         dueDate: task.dueDate,
         projectId: task.projectId,
         archived: task.archived,
+        uid: auth.currentUser.uid
       })
       .then(() => {
         console.log(task.projectId, "added");

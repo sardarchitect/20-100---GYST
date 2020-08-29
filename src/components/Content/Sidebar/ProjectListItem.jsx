@@ -9,7 +9,6 @@ export const ProjectListItem = ({ active, project }) => {
   const [hover, setHover] = useState(false);
   const { setSelectedProject } = useSelectedProjectValue();
 
-  console.log(active);
   const deleteProject = (project) => {
     if (window.confirm(`Do you wish to delete ${project.title}?`)) {
       db.collection("projects")

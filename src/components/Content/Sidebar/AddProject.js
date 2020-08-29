@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiPlus } from "react-icons/fi";
-import { db } from "../../../firebase";
+import { db, auth } from "../../../firebase";
 
 export const AddProject = () => {
   const [active, setActive] = useState(false);
@@ -19,6 +19,7 @@ export const AddProject = () => {
       .add({
         projectId: generateProjectId,
         title: title,
+        uid: auth.currentUser.uid
       })
       .then(() => {
         console.log(title, "added");

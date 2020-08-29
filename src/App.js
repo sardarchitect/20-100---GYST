@@ -1,22 +1,25 @@
-import React, { useState } from "react";
-import { Header } from "./components/header/Header";
-import { Content } from "./components/content/Content";
-import { ProjectsProvider, SelectedProjectProvider, TasksProvider } from './context';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+
+import {
+  AuthProvider,
+} from "./context";
+
+import {PrivateRoute} from './PrivateRoute';
+import {Application} from './Application';
+import  SignUp  from "./components/auth/SignUp";
+import  SignIn  from "./components/auth/SignIn";
 
 const App = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
 
   return (
-    <SelectedProjectProvider>
-      <ProjectsProvider>
-        <TasksProvider>
-        <div className="App">
-          <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-          <Content showSidebar={showSidebar} />
-        </div>
-        </TasksProvider>
-      </ProjectsProvider>
-    </SelectedProjectProvider>
+    <AuthProvider>
+      <Switch>
+        <PrivateRoute exact path="/" component={Application} />
+        <Route path="/sign-up" component={SignUp} />
+        <Route path="/sign-in" component={SignIn} />
+      </Switch>
+    </AuthProvider>
   );
 };
 

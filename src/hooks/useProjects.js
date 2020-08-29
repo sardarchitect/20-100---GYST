@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 
 // USEPROJECTS: FETCH PROJECTS DATA FROM FIREBASE AND ADD TO PROJECTS //
 
@@ -8,6 +8,7 @@ export const useProjects = () => {
   
     useEffect(() => {
       const unsubscribe = db.collection("projects")
+        .where("uid", "==", auth.currentUser.uid)
         .onSnapshot((snapshot) => {
           const projectsData = [];
           snapshot.forEach(doc =>

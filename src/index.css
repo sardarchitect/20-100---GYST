@@ -48,6 +48,18 @@ ul{
   cursor: pointer;
   border-radius: 20%
 }
+.panel {
+  cursor:  default;
+  padding: 10px;
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background-color: white;
+  box-shadow: rgb(70, 70, 70) 1px 1px 10px;
+}
+.sign-out{
+  cursor: pointer;
+}
 
 /*=================== CONTENT ===================*/
 .content{

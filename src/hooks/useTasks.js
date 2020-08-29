@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 
 // USETASKS: FETCH TASKS DATA FROM FIREBASE AND ADD TO TASKS //
 
@@ -8,6 +8,7 @@ export const useTasks = () => {
   
     useEffect(() => {
       const unsubscribe = db.collection("tasks")
+      .where("uid", "==", auth.currentUser.uid)
         .onSnapshot((snapshot) => {
           const tasksData = [];
           snapshot.forEach(doc =>

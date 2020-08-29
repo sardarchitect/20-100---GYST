@@ -8,7 +8,22 @@ import {
   SelectedProjectProvider,
   useSelectedProjectValue,
 } from "./SelectedProjectsContext";
-import { TasksContext, TasksProvider, useTasksValue } from "./TasksContext";
+import { 
+  TasksContext, 
+  TasksProvider, 
+  useTasksValue 
+} from "./TasksContext";
+import {
+  AuthContext,
+  AuthProvider,
+  useAuthValue
+} from './AuthContext'
+import {
+  CurrentUserContext,
+  CurrentUserProvider,
+  useCurrentUserValue
+} from './CurrentUserContext'
+
 
 export {
   ProjectsContext,
@@ -20,4 +35,10 @@ export {
   TasksContext,
   TasksProvider,
   useTasksValue,
+  AuthContext,
+  AuthProvider,
+  useAuthValue,
+  CurrentUserContext,
+  CurrentUserProvider,
+  useCurrentUserValue
 };
