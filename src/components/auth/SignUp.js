@@ -3,7 +3,6 @@ import { withRouter, Link } from "react-router-dom";
 import { auth, db } from "../../firebase";
 
 const SignUp = ({ history }) => {
-
   const handleSignUp = useCallback(
     async (e) => {
       e.preventDefault();
@@ -21,29 +20,29 @@ const SignUp = ({ history }) => {
   );
 
   const createUser = (uid, email, displayName) => {
-    db.collection('users').add({
+    db.collection("users").add({
       uid,
       email,
-      displayName
-    })
-  }
+      displayName,
+    });
+  };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSignUp}>
-      <label>Display Name:</label>
+    <div className="sign-up">
+      <div className="sign-up__logo">
+        <h1> Get Your Sh!t Together</h1>
+        <h2>A Life Organizer App</h2>
+      </div>
+      <h3>Sign Up</h3>
+      <form id="sign-up-form" onSubmit={handleSignUp}>
+        <label>Display Name:</label>
         <input
           type="text"
           name="displayName"
           placeholder="Enter your display name"
         />
         <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-        />
+        <input type="email" name="email" placeholder="Enter your email" />
         <label>Password:</label>
         <input
           type="password"
@@ -51,15 +50,15 @@ const SignUp = ({ history }) => {
           placeholder="Enter your password"
         />
         <button type="submit">Sign Up</button>
+        <button
+          onClick={() => {
+            alert("google sign in not working yet");
+          }}
+        >
+          Sign in with Google
+        </button>
       </form>
 
-      <button
-        onClick={() => {
-          alert("google sign in not working yet");
-        }}
-      >
-        Sign in with Google
-      </button>
       <p>
         Already have an account?
         <Link to="/sign-in">Sign in here</Link>

@@ -4,8 +4,7 @@ import { auth } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
 
 const SignIn = ({ history }) => {
-
-  const {currentAuth} = useContext(AuthContext);
+  const { currentAuth } = useContext(AuthContext);
 
   const handleSignIn = useCallback(
     async (e) => {
@@ -22,19 +21,19 @@ const SignIn = ({ history }) => {
   );
 
   if (currentAuth) {
-    return <Redirect to='/' />;
+    return <Redirect to="/" />;
   }
 
   return (
-    <div>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSignIn}>
+    <div className="sign-in">
+      <div className="sign-in__logo">
+        <h1> Get Your Sh!t Together</h1>
+        <h2>A Life Organizer App</h2>
+      </div>
+      <h3>Sign In</h3>
+      <form id="sign-in-form" onSubmit={handleSignIn}>
         <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-        />
+        <input type="email" name="email" placeholder="Enter your email" />
         <label>Password:</label>
         <input
           type="password"
@@ -42,15 +41,15 @@ const SignIn = ({ history }) => {
           placeholder="Enter your password"
         />
         <button type="submit">Sign In</button>
+        <button
+          onClick={() => {
+            alert("google sign in not working");
+          }}
+        >
+          Sign in with Google
+        </button>
       </form>
 
-      <button
-        onClick={() => {
-          alert("google sign in not working");
-        }}
-      >
-        Sign in with Google
-      </button>
       <p>
         Need to register?
         <Link to="/sign-up">Sign up here</Link>

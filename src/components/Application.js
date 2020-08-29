@@ -1,14 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import {
   ProjectsProvider,
   SelectedProjectProvider,
   TasksProvider,
   CurrentUserProvider,
-} from "./context";
+} from "../context";
 
-import { Header } from "./components/header/Header";
-import { Content } from "./components/content/Content";
+import { Header } from "./header/Header";
+import { Content } from "./content/Content";
 
 export const Application = () => {
   const [showSidebar, setShowSidebar] = useState(true);

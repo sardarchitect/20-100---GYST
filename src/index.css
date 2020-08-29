@@ -9,7 +9,7 @@ DESCRIPTION:
   padding: 0;
   box-sizing: border-box;
 }
-.App {
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   min-height: 100vh;
 }
@@ -17,6 +17,64 @@ ul{
   list-style: none;
 }
 
+/*=================== SIGN IN ===================*/
+.sign-in{  
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  max-width: 500px;
+  padding: 50px;
+  border-radius: 50px;
+}
+.sign-in__logo{
+  text-align:center;
+}
+.sign-in h3 {
+  text-align: center;
+  margin: 25px;
+}
+#sign-in-form * {
+  margin: 10px 0;
+  font-size: 1.25em
+}
+#sign-in-form label {
+  display: block;
+}
+#sign-in-form input, #sign-in-form button{
+  width: 100%;
+  height: 50px;
+}
+/*=================== SIGN UP ===================*/
+.sign-up{  
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  max-width: 500px;
+  padding: 50px;
+  border-radius: 50px;
+}
+.sign-up__logo{
+  text-align:center;
+}
+.sign-up h3 {
+  text-align: center;
+  margin: 25px;
+}
+#sign-up-form * {
+  margin: 10px 0;
+  font-size: 1.25em
+}
+#sign-up-form label {
+  display: block;
+}
+#sign-up-form input, #sign-up-form button{
+  width: 100%;
+  height: 50px;
+}
 /*=================== HEADER ===================*/
 .header{
   z-index: 99;
