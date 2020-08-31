@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { auth, db } from "../../firebase";
+import { auth, db, provider } from "../../firebase";
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
@@ -18,6 +18,17 @@ const SignUp = ({ history }) => {
     },
     [history]
   );
+
+  const signInWithPopupHandler = () => {
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
 
   const createUser = (uid, email, displayName) => {
     db.collection("users").add({
@@ -50,13 +61,7 @@ const SignUp = ({ history }) => {
           placeholder="Enter your password"
         />
         <button type="submit">Sign Up</button>
-        <button
-          onClick={() => {
-            alert("google sign in not working yet");
-          }}
-        >
-          Sign in with Google
-        </button>
+        <button onClick={signInWithPopupHandler}>Sign in with Google</button>
       </form>
 
       <p>

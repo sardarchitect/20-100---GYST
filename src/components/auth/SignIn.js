@@ -1,6 +1,6 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect, Link } from "react-router-dom";
-import { auth } from "../../firebase";
+import { auth, provider } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
 
 const SignIn = ({ history }) => {
@@ -19,6 +19,17 @@ const SignIn = ({ history }) => {
     },
     [history]
   );
+
+  const signInWithPopupHandler = () => {
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
 
   if (currentAuth) {
     return <Redirect to="/" />;
@@ -41,13 +52,7 @@ const SignIn = ({ history }) => {
           placeholder="Enter your password"
         />
         <button type="submit">Sign In</button>
-        <button
-          onClick={() => {
-            alert("google sign in not working");
-          }}
-        >
-          Sign in with Google
-        </button>
+        <button onClick={signInWithPopupHandler}>Sign in with Google</button>
       </form>
 
       <p>

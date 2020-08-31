@@ -8,7 +8,8 @@ export const useCurrentUser = () => {
 
   useEffect(() => {
     if (auth.currentUser) {
-      db.collection("users")
+      db
+        .collection("users")
         .where("uid", "==", auth.currentUser.uid)
         .get()
         .then(function (querySnapshot) {
