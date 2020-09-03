@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FiPlus } from "react-icons/fi";
 import { useSelectedProjectValue } from "../../../context";
 import { db, auth } from "../../../firebase";
+import { BsThreeDots } from "react-icons/bs";
 
 export const AddTask = () => {
   const [active, setActive] = useState(false);

@@ -245,3 +245,26 @@ ul{
   width: 60px;
   height: 25px;
 }
+#edit-project-btn:hover{
+  cursor: pointer;
+}
+.edit-task{
+  position: absolute;
+  margin: 0 auto;
+  background-color: white;
+  padding: 50px;
+  box-shadow: rgb(70, 70, 70) 1px 1px 10px;
+}
+.edit-task input{
+  display: block;
+  width: 100%;
+}
+.edit-task button{
+  width: 50%;
+}
+.edit-task-close{
+  position: absolute;
+  right: 10px;
+  top: 0;
+  cursor: pointer;
+}

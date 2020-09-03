@@ -3,18 +3,21 @@ import { useSelectedProjectValue, useTasksValue } from "../../../context";
 import moment from "moment";
 import { AddTask } from "./AddTask";
 import { TaskItem } from "./TaskItem";
-import {BsThreeDots} from 'react-icons/bs';
+import { BsThreeDots } from "react-icons/bs";
+import { db } from "../../../firebase";
 
 export const Editor = () => {
   const [currentTasks, setCurrentTasks] = useState([]);
   const { tasks } = useTasksValue();
   const { selectedProject } = useSelectedProjectValue();
+  const [editProject, setEditProject] = useState(false);
+  const [projectNameUpdate, setProjectNameUpdate] = useState(selectedProject.title);
+  const [projectTitle, setProjectTitle] = useState('');
 
   useEffect(() => {
-    
     const today = moment().format("ll");
     let filteredTasks = [];
-    
+
     switch (selectedProject.projectId) {
       case "all":
         setCurrentTasks(tasks);
@@ -33,21 +36,53 @@ export const Editor = () => {
         break;
       default:
         filteredTasks = tasks.filter(
-          (task) => task.projectId === (selectedProject.projectId)
+          (task) => task.projectId === selectedProject.projectId
         );
         setCurrentTasks(filteredTasks);
         break;
     }
   }, [selectedProject, tasks]);
 
+  useEffect(()=> {
+    setProjectTitle(selectedProject.title); 
+  }, [selectedProject, projectTitle])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(selectedProject);
+    db.collection("projects")
+      .doc(selectedProject.docId)
+      .update({
+        title: projectNameUpdate,
+      })
+      .then(() => {
+        console.log(selectedProject.projectId, "updated");
+      });
+      setEditProject(false);
+    setProjectNameUpdate('');
+  }
+
   return (
     <div className="editor">
       <div className="editor__display">
         {/* EDITOR HEADER */}
         <div className="editor__header">
-          <strong>{selectedProject.title}</strong>
-          <BsThreeDots />
+          <strong>{projectTitle}</strong>
+          <BsThreeDots
+            id="edit-project-btn"
+            onClick={() => setEditProject(!editProject)}
+          />
         </div>
+        {editProject && (
+          <form onSubmit={handleSubmit}>
+            <input
+              value={projectNameUpdate}
+              onChange={(e)=>setProjectNameUpdate(e.target.value)}
+            />
+            <button type="submit"> Update Project </button>
+          </form>
+        )}
+
         {/* EDITOR LIST */}
         <div className="editor__list-view">
           {currentTasks.map((task) => (
