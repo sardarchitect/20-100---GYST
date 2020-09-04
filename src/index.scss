@@ -1,0 +1,24 @@
+/*
+GYST LIFE ORGANIZER APPLICATION
+BUILT BY: SARDARCHITECT
+SCSS FILE
+*/
+/*=================== GLOBAL CSS ===================*/
+
+$font-stack: BlinkMacSystemFont,'Segoe UI', sans-serif;
+$text-primary-color: black;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  font: 100% $font-stack;
+  color: $text-primary-color;
+
+}
+ul{
+  list-style: none;
+}

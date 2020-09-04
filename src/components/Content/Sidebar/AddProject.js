@@ -36,7 +36,7 @@ export const AddProject = () => {
               placeholder="Project Title"
               value={title}
             />
-            <button type="submit">Add</button>
+            <button type="submit" id="sidebar__add-btn">Add</button>
             <button onClick={() => setActive(false)}>Cancel</button>
           </form>
         </div>

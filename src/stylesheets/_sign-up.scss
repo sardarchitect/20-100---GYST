@@ -1,0 +1,32 @@
+
+/*=================== SIGN UP ===================*/
+.sign-up{  
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    max-width: 500px;
+    padding: 50px;
+    border-radius: 50px;
+  }
+  .sign-up__logo{
+    text-align:center;
+  }
+  .sign-up h3 {
+    text-align: center;
+    margin: 25px;
+  }
+  #sign-up-form * {
+    margin: 10px 0;
+    font-size: 1.25em
+  }
+  #sign-up-form label {
+    display: block;
+  }
+  #sign-up-form input, #sign-up-form button{
+    width: 100%;
+    height: 50px;
+  }
+  
+  

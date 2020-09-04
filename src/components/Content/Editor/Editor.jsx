@@ -5,6 +5,7 @@ import { AddTask } from "./AddTask";
 import { TaskItem } from "./TaskItem";
 import { BsThreeDots } from "react-icons/bs";
 import { db } from "../../../firebase";
+import '../../../stylesheets/_editor.scss'
 
 export const Editor = () => {
   const [currentTasks, setCurrentTasks] = useState([]);

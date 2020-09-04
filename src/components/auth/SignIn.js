@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect, Link } from "react-router-dom";
 import { auth, provider } from "../../firebase";
 import { AuthContext } from "../../context/AuthContext";
+import '../../stylesheets/_sign-in.scss'
 
 const SignIn = ({ history }) => {
   const { currentAuth } = useContext(AuthContext);

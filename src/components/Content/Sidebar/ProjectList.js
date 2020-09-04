@@ -12,7 +12,7 @@ export const ProjectList = ({ active, setActive }) => {
         key={project.projectId}
         className={
           active === project.projectId
-            ? "active sidebar__item"
+            ? "sidebar__item__active sidebar__item"
             : "sidebar__item"
         }
         onClick={() => {

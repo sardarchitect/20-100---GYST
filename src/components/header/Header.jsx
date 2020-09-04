@@ -1,14 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { FiSearch, FiSettings, FiPlus, FiMenu } from "react-icons/fi";
-import { auth, db } from "../../firebase";
+import { auth } from "../../firebase";
 import { useCurrentUserValue } from "../../context";
+import "../../stylesheets/_header.scss";
 
 export const Header = ({ showSidebar, setShowSidebar }) => {
   const [settingsPanel, setSettingsPanel] = useState(false);
   const { currentUser } = useCurrentUserValue();
+  
   const signOut = () => {
-    alert("Logging Out");
-    auth.signOut();
+  
   };
 
   return (
@@ -35,10 +36,12 @@ export const Header = ({ showSidebar, setShowSidebar }) => {
             size="24"
           />
           {settingsPanel && (
-            <div className="panel">
-              <p> Hi {currentUser.displayName} </p>
+            <div id="settings-dropdown">
+              <p> Hey, {currentUser.displayName}! </p>
               <hr />
-              <p className="sign-out" onClick={signOut}>Sign Out</p>
+              <p id="sign-out-btn" onClick={()=>window.confirm('Sign Out?') ? auth.signOut() : setSettingsPanel(false)}>
+                Sign Out
+              </p>
             </div>
           )}
         </div>

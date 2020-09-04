@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FiTrash } from "react-icons/fi";
-import {BsCircle, BsCircleFill} from 'react-icons/bs';
+import { BsCircle, BsCircleFill } from "react-icons/bs";
 import { db } from "../../../firebase";
 import { useSelectedProjectValue } from "../../../context";
-import {genericProjects} from '../../../constants';
+import { genericProjects } from "../../../constants";
 
 export const ProjectListItem = ({ active, project }) => {
   const [hover, setHover] = useState(false);
@@ -25,14 +25,12 @@ export const ProjectListItem = ({ active, project }) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {
-        active === project.projectId ? <BsCircleFill /> : <BsCircle />
-      }
+      {active === project.projectId ? <BsCircleFill size="12px"/> : <BsCircle size="12px" />}
       <span className="sidebar__label">{project.title}</span>
       {hover && (
         <span
-          className="sidebar__delete"
-          onClick={()=> deleteProject(project)}
+          className="sidebar__delete-btn"
+          onClick={() => deleteProject(project)}
         >
           <FiTrash />
         </span>

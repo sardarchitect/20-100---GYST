@@ -1,0 +1,50 @@
+/*=================== HEADER ===================*/
+.header {
+  z-index: 99;
+  position: relative;
+  width: 100vw;
+  height: 50px;
+
+  background-color: white;
+  box-shadow: rgb(70, 70, 70) 1px 1px 10px;
+
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__left,
+.header__right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.header__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  padding: 10px;
+}
+.header__item:hover {
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+  border-radius: 20%;
+}
+#settings-dropdown {
+  cursor: default;
+  padding: 10px;
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  min-width: 200px;
+  background-color: white;
+  box-shadow: rgb(70, 70, 70) 1px 1px 10px;
+}
+#settings-dropdown hr {
+  margin: 10px 0;
+}
+#sign-out-btn {
+  cursor: pointer;
+}
