@@ -5,17 +5,19 @@ import { AddTask } from "./AddTask";
 import { TaskItem } from "./TaskItem";
 import { BsThreeDots } from "react-icons/bs";
 import { db } from "../../../firebase";
-import '../../../stylesheets/_editor.scss'
+import "../../../stylesheets/_editor.scss";
 
 export const Editor = () => {
   const [currentTasks, setCurrentTasks] = useState([]);
   const { tasks } = useTasksValue();
   const { selectedProject } = useSelectedProjectValue();
+  const [editProjectMenu, setEditProjectMenu] = useState(false);
   const [editProject, setEditProject] = useState(false);
-  const [projectNameUpdate, setProjectNameUpdate] = useState(selectedProject.title);
-  const [projectTitle, setProjectTitle] = useState('');
-
+  const [projectNameUpdate, setProjectNameUpdate] = useState("");
+  const [title, setTitle] = useState('');
   useEffect(() => {
+    setTitle(selectedProject.title)
+    setProjectNameUpdate(selectedProject.title)
     const today = moment().format("ll");
     let filteredTasks = [];
 
@@ -42,11 +44,11 @@ export const Editor = () => {
         setCurrentTasks(filteredTasks);
         break;
     }
-  }, [selectedProject, tasks]);
+  }, [selectedProject, tasks, selectedProject.title]);
 
-  useEffect(()=> {
-    setProjectTitle(selectedProject.title); 
-  }, [selectedProject, projectTitle])
+  useEffect(()=>{
+    setTitle(selectedProject.title);
+  },[title])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,29 +61,54 @@ export const Editor = () => {
       .then(() => {
         console.log(selectedProject.projectId, "updated");
       });
-      setEditProject(false);
-    setProjectNameUpdate('');
-  }
+    setEditProjectMenu(false);
+    setEditProject(false);
+    setProjectNameUpdate("");
+  };
 
   return (
     <div className="editor">
       <div className="editor__display">
         {/* EDITOR HEADER */}
         <div className="editor__header">
-          <strong>{projectTitle}</strong>
+          <strong>{title}</strong>
           <BsThreeDots
-            id="edit-project-btn"
-            onClick={() => setEditProject(!editProject)}
+            id="edit-project-dropdown-btn"
+            onClick={() => setEditProjectMenu(!editProjectMenu)}
           />
         </div>
+        {editProjectMenu && (
+          <div id="edit-project-dropdown">
+            <p
+              id="edit-project-btn"
+              onClick={() => {
+                setEditProject(!editProject);
+                setEditProjectMenu(false);
+              }}
+            >
+              Edit Project
+            </p>
+            <hr />
+            <p id="show-archived-btn">Show Archived Tasks</p>
+          </div>
+        )}
+
         {editProject && (
-          <form onSubmit={handleSubmit}>
-            <input
-              value={projectNameUpdate}
-              onChange={(e)=>setProjectNameUpdate(e.target.value)}
-            />
-            <button type="submit"> Update Project </button>
-          </form>
+          <div className="window">
+            <div className="edit-project-window">
+              <p className="close-window" onClick={()=>setEditProject(!editProject)}> X </p>
+              <h3>Edit Project</h3>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  value={projectNameUpdate}
+                  onChange={(e) => setProjectNameUpdate(e.target.value)}
+                />
+                <button type="submit"> Update Name </button>
+                <button id="delete-project-btn"> Delete Project </button>
+              </form>
+            </div>{" "}
+          </div>
         )}
 
         {/* EDITOR LIST */}

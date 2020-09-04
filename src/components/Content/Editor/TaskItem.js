@@ -6,7 +6,8 @@ import { BsThreeDots } from "react-icons/bs";
 export const TaskItem = ({ task }) => {
   const [archived, setArchived] = useState(false);
   const [hover, setHover] = useState(false);
-  const [editTodo, setEditTodo] = useState(false);
+  const [editTaskMenu, setEditTaskMenu] = useState(false)
+  const [editTask, setEditTask] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [newTaskDate, setNewTaskDate] = useState('');
 
@@ -39,7 +40,7 @@ export const TaskItem = ({ task }) => {
         title: newTaskTitle,
         dueDate: newTaskDate
       })
-      setEditTodo(false);
+      setEditTask(false);
   }
 
   return (
@@ -52,14 +53,23 @@ export const TaskItem = ({ task }) => {
         <div className="editor__list-item__date">{task.dueDate}</div>
       </span>
       {hover && (
-        <span className="editor__list-item__delete" onClick={()=>setEditTodo(!editTodo)}>
+        <span className="editor__list-item-edit-menu" onClick={()=>setEditTaskMenu(!editTaskMenu)}>
           <BsThreeDots size="24px" />
         </span>
       )}
       {
-        editTodo && (
+        editTaskMenu && (
+          <div id="edit-task-dropdown">
+            <p>Edit Task</p>
+            <hr />
+            <p>Delete Task</p>
+          </div>
+        )
+      }
+      {
+        editTask && (
           <div className="edit-task">
-            <div className="edit-task-close" onClick={() => setEditTodo(!editTodo)}>
+            <div className="close-window" onClick={() => setEditTask(!editTask)}>
               X
             </div>
             <h3>Edit Task</h3>
