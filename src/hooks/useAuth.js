@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { auth } from "../firebase";
 
-// USECURRENTUSER: SETS CURRENT USER THROUGH OBSERVER //
+// GOOGLE OAUTH OBSERVER
 
 export const useAuth = () => {
   const [currentAuth, setCurrentAuth] = useState();
@@ -9,6 +9,6 @@ export const useAuth = () => {
   useEffect(() => {
     auth.onAuthStateChanged(setCurrentAuth);
   }, []);
-
+  
   return { currentAuth, setCurrentAuth };
 };

@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import { FiSearch, FiSettings, FiPlus, FiMenu } from "react-icons/fi";
 import { auth } from "../../firebase";
 import { useCurrentUserValue } from "../../context";
+
 import "../../stylesheets/_header.scss";
+import { FiSearch, FiSettings, FiPlus, FiMenu } from "react-icons/fi";
 
 export const Header = ({ showSidebar, setShowSidebar }) => {
-  const [settingsPanel, setSettingsPanel] = useState(false);
+  
   const { currentUser } = useCurrentUserValue();
+  const [settingsPanel, setSettingsPanel] = useState(false);
   
-  const signOut = () => {
-  
-  };
-
   return (
     <header className="header">
       <div className="header__left">

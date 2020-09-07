@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-
+// Context Provider
 import {
   ProjectsProvider,
   SelectedProjectProvider,
   TasksProvider,
   CurrentUserProvider,
 } from "../context";
-
+// Components
 import { Header } from "./header/Header";
 import { Content } from "./content/Content";
 

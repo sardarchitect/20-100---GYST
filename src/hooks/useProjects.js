@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 
-// USEPROJECTS: FETCH PROJECTS DATA FROM FIREBASE AND ADD TO PROJECTS //
+// USEPROJECTS: FETCH PROJECTS DATA FROM FIREBASE AND ADD TO PROJECTS
 
 export const useProjects = () => {
     const [projects, setProjects] = useState([]);
@@ -18,5 +18,6 @@ export const useProjects = () => {
         });
       return () => unsubscribe();
     }, []);
+    
     return { projects, setProjects };
   };

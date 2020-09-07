@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 
-// USETASKS: FETCH TASKS DATA FROM FIREBASE AND ADD TO TASKS //
+// USETASKS: FETCH TASKS DATA FROM FIREBASE AND ADD TO TASKS
 
 export const useTasks = () => {
     const [tasks, setTasks] = useState([]);
