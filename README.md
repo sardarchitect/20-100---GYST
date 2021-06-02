@@ -1,3 +1,11 @@
+# Life Organizer App
+
+Features:
+- Todo list 
+- Project Timeline*
+- Calendar*
+- Cloud storage
+- React-build
 =======DIRECTORY STRUCTURE=======
 
 /node_modules
